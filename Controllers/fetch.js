@@ -3,9 +3,9 @@ const ObjectId = require('mongoose').Types.ObjectId;
 
 
 const fetchAllImages = async (req, res) => {
-    const usersList = await Users.find();
-    if (usersList) {
-        res.status(200).send(usersList)
+    const imagefiles = await Users.find();
+    if (imagefiles) {
+        res.status(200).send(imagefiles)
     }
 }
 
