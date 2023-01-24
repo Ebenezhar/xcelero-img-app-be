@@ -22,7 +22,8 @@ const postImages = async (req, res) => {
             category: req.body.category,
             images: imagesArray
         })
-        await files.save()
+        await files.save();
+
         res.status(200).send({ message: 'Files saved successfully' })
     } catch (error) {
         res.status(400).send(error.message)

@@ -9,5 +9,5 @@ const router = express.Router();
 router.post('/postimages', upload.array('files'), postImages)
 router.get('/fetchallimages', fetchAllImages)
 router.delete('/deleteimage/:fname', deleteImage)
-router.put('/updatedetails', updateDetails)
+router.post('/updatedetails', updateDetails)
 module.exports = router;

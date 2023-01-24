@@ -1,6 +1,5 @@
 const Users = require('../Schema/userData')
 const updateDetails = async (req, res) => {
-
     try {
         let output = await Users.aggregate([
             {
@@ -9,7 +8,7 @@ const updateDetails = async (req, res) => {
                 }
             }, {
                 '$match': {
-                    'images.fileName': `${req.params.fname}`
+                    'images.fileName': `${req.body.fname}`
                 }
             }
         ])
@@ -20,13 +19,12 @@ const updateDetails = async (req, res) => {
         let replace = output[0].images
         let id = output[0]._id
 
-        let response = await Users.updateOne({ "_id": id }, { "$pull": { "images": { "fileName": `${req.params.fname}` } } })
+        let response = await Users.updateOne({ "_id": id }, { "$pull": { "images": { "fileName": `${req.body.fname}` } } })
         let finalresult = await Users.updateOne({ "_id": id },
             { "$push": { "images": replace } })
         if (finalresult.acknowledged) {
             res.status(200).send({ message: "File Updated successfully" })
         }
-
     } catch (error) {
         res.status(400).send(error.message)
     }
